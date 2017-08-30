@@ -1,0 +1,8 @@
+FROM alpine
+RUN apk --update add openjdk8-jre
+ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/greeting/timer-service.jar"]
+
+# Add Maven dependencies (not shaded into the artifact; Docker-cached)
+# ADD target/lib           /usr/share/greeting/lib
+# Add the service itself
+ADD target/timer-service.jar /usr/share/greeting/timer-service.jar
